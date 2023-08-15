@@ -184,10 +184,8 @@ Question 6: Debugging an infinite loop! \n`);
  *
  * ↓ YOUR CODE HERE ↓ */
 
-/*    
-   for (let i = 11; i > 10; i++) { 
-      console.log(i);   
-   } 
-  */
+for (let i = 1; i < 10; i++) {
+  console.log(i);
+}
 
 console.log("-----------Finished------------");
