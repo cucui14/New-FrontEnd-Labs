@@ -36,20 +36,24 @@
 
 /*---------------------------------- Let and Const -------------------------------------*/
 console.log(`-------------------------- 
-Question 1: Declaring Let and Const variables`)
+Question 1: Declaring Let and Const variables`);
 
 /*
  * Step 1: Initialize two variables using 'const' and set the value of those variables to what you're having to eat and drink
  * Step 2: Initialize two more variables using 'let' and set one value to your name, and the other to your friends name.
  *
  * ↓ YOUR CODE HERE ↓ */
+const eating = "hot dogs";
+let drinking = "water";
+let myName = "Angel";
+let friendName = "Rod";
 
 //Question: Name a reason why you would use const instead of let.
-//Answer:
+//Answer: A reasons to use const intead of let would be to keep the value of the variable from changing.
 
 /*---------------------------------- Template Literals -------------------------------------*/
 console.log(`-------------------------- 
-Question 2: Template Literals`)
+Question 2: Template Literals`);
 
 /*
  * Step 1: Using template literals and the variables we just created,
@@ -57,12 +61,26 @@ Question 2: Template Literals`)
  *
  *
  * ↓ YOUR CODE HERE ↓ */
+console.log(
+  `${friendName} and ${myName} are having ${eating} and ${drinking} for lunch.`
+);
 
 //Question: How would the sentence you wrote look if you used string concatenation instead of template literals?
 //          console.log() your answer to check
 //Answer:
+console.log(
+  friendName +
+    " and " +
+    myName +
+    " are having " +
+    eating +
+    " and " +
+    drinking +
+    " for lunch."
+);
+
 console.log(`-------------------------- 
-Question 2a: Oh no`)
+Question 2a: Oh no`);
 
 /* Oh no! You just remembered your friend is allergic to the drink we prepared!
  *
@@ -71,12 +89,17 @@ Question 2a: Oh no`)
  *
  * ↓ YOUR CODE HERE ↓ */
 
+drinking = "juice";
+console.log(
+  `${friendName} and ${myName} are having ${eating} and ${drinking} for lunch.`
+);
+
 //Question: Read the error message - in your own words - what does it mean?
-//Answer:
+//Answer: We cannot reassign another value to a variable declaired with const.
 
 /*---------------------------------- Arrow Functions -------------------------------------*/
 console.log(`-------------------------- 
-Question 3: Arrow Functions`)
+Question 3: Arrow Functions`);
 
 /* You and your friend eat together so often that having a new variable for each food/drink
  *     item could get tiring.
@@ -91,12 +114,21 @@ Question 3: Arrow Functions`)
  *         console.log(lunchTime('Pizza','Water'))
  * ↓ YOUR CODE HERE ↓ */
 
+const lunchTime = (foodChoice, drinkChoice) => {
+  return `${friendName} and ${myName} are having ${foodChoice} and ${drinkChoice} for lunch.`;
+};
+console.log(lunchTime("Pizza", "Water"));
+
 //Question: What would your function look like if we were using the old way of creating a function?
 //Answer:
 
+// function lunchTime(foodChoice, drinkChoice) {
+//   return `${friendName} and ${myName} are having ${foodChoice} and ${drinkChoice} for lunch.`;
+// }
+
 /*---------------------------------- Callbacks -------------------------------------*/
 console.log(`-------------------------- 
-Question 4: Callbacks`)
+Question 4: Callbacks`);
 
 /**
  * You and your friend ALWAYS eat lunch, but it might be a good idea to plan for the next date in advance.
@@ -108,4 +140,16 @@ Question 4: Callbacks`)
  *
  * ↓ YOUR CODE HERE ↓ */
 
-console.log(`-----------Finished------------`)
+const foodForTodayAndTomorrow = (
+  tomorrowsFoodChoice,
+  tomorrowsDrinkChoice,
+  callbackFunction
+) => {
+  return `${callbackFunction} Tomorrow we want ${tomorrowsFoodChoice} and ${tomorrowsDrinkChoice}.`;
+};
+
+console.log(
+  foodForTodayAndTomorrow("Tacos", "Soda", lunchTime("Pasta", "Water"))
+);
+
+console.log(`-----------Finished------------`);
