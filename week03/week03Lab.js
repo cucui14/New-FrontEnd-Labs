@@ -125,7 +125,7 @@ Question 4: Todo List \n`);
 let myTodoList = [];
 myTodoList.push("Buy milk", "Buy bread", "Buy sugar");
 console.log(myTodoList);
-console.log(myTodoList.splice(2, 1));
+console.log(myTodoList.splice(1, 1));
 console.log(myTodoList);
 let yourTodoList = ["Buy salt", "Buy soda"];
 console.log(yourTodoList);
