@@ -4,8 +4,8 @@
   Subject:  JavaScript Mocha/Chai
   FE Lab Week 06
 */
-const expect = chai.expect
-const assert = chai.assert
+const expect = chai.expect;
+const assert = chai.assert;
 
 /* ----------------------------------------------------- */
 // Resources:
@@ -41,24 +41,148 @@ describe('Week 6 Lab Tests:', () => {
     it('#Should return the sum of two numbers', () => {
       // Copy & paste your debugged code from week6Lab.js
       function addTwoNumbers(num1, num2) {
-        return num1 + num2
+        return num1 + num2;
       }
       // Write tests to ensure it works for multiple examples
-      expect(addTwoNumbers(2, 3)).to.equal(5)
-      expect(addTwoNumbers(9, 17)).to.equal(26)
-      expect(addTwoNumbers(750, 250)).to.equal(1000)
-      expect(addTwoNumbers(132780, 443378)).to.equal(576158)
-    })
+      expect(addTwoNumbers(2, 3)).to.equal(5);
+      expect(addTwoNumbers(9, 17)).to.equal(26);
+      expect(addTwoNumbers(750, 250)).to.equal(1000);
+      expect(addTwoNumbers(132780, 443378)).to.equal(576158);
+    });
 
     describe('Example Failed Test: Add Two Numbers', () => {
       it('#Should fail', () => {
         function sumOfTwoNumbers(num1, num2) {
-          num1 + num2
+          num1 + num2;
         }
 
-        expect(sumOfTwoNumbers(2, 3)).to.equal(5)
-      })
-    })
-  })
+        expect(sumOfTwoNumbers(2, 3)).to.equal(5);
+      });
+    });
+  });
   /*--------------------------NEW TESTS BELOW-------------------------------*/
-})
+  describe('Question 1a: Sorted array of numbers', () => {
+    it('Should sort an array of numbers in decending order', () => {
+      let arrayOfNumbers = [1, 5, 3, 2, 4];
+      arrayOfNumbers = arrayOfNumbers.sort((a, b) => a - b);
+
+      expect(arrayOfNumbers).to.deep.equal([1, 2, 3, 4, 5]);
+    });
+  });
+
+  describe('Question 1b: Manage my wallet', () => {
+    it('Should remove 14.99 from 100 and add 3', () => {
+      class Wallet {
+        constructor(startingMoney) {
+          this.money = startingMoney;
+        }
+
+        addMoney(amount) {
+          this.money += amount;
+        }
+
+        removeMoney(amount) {
+          this.money -= amount;
+        }
+      }
+
+      const myWallet = new Wallet(100);
+      myWallet.removeMoney(14.99);
+      myWallet.addMoney(3);
+
+      expect(myWallet.money).to.equal(88.01);
+    });
+  });
+
+  describe('Question 1c: Day of the Week', () => {
+    it('Should return the day of the week', () => {
+      const dayOfTheWeek = (num) => {
+        switch (num) {
+          case 1:
+            return 'Monday';
+            break;
+          case 2:
+            return 'Tuesday';
+            break;
+          case 3:
+            return 'Wednesday';
+            break;
+          case 4:
+            return 'Thursday';
+            break;
+          case 5:
+            return 'Friday';
+            break;
+          case 6:
+            return 'Saturday';
+            break;
+          case 7:
+            return 'Sunday';
+            break;
+          default:
+            console.log('Err. Something went wrong.');
+        }
+      };
+
+      expect(dayOfTheWeek(5)).to.equal('Friday');
+      expect(dayOfTheWeek(2)).to.equal('Tuesday');
+    });
+  });
+
+  describe('Question 1d: Only wizards shall pass!', () => {
+    const movieCharacters = [
+      {
+        name: 'Howl',
+        isAWizard: true,
+        quote: `You're wearing that hat? After all the magic I used to make your dress pretty?`,
+      },
+      {
+        name: 'Kalcifer',
+        isAWizard: false,
+        quote: `I don't cook! I'm a scary and powerful fire demon!`,
+      },
+      {
+        name: 'Gandalf',
+        isAWizard: true,
+        quote: `You shall not pass!`,
+      },
+      {
+        name: 'Luke Skywalker',
+        isAWizard: false,
+        quote: `May the Force be with you.`,
+      },
+      {
+        name: 'Angel Pureco',
+        isAWizard: true,
+        quote: 'Love to be a wizard',
+      },
+    ];
+
+    function onlyWizards(arrayOfCharacters) {
+      return arrayOfCharacters.filter(
+        (character) => character.isAWizard == true
+      );
+    }
+
+    // it('Should return an array of objects where isAWizard is true', () => {
+    //   expect(onlyWizards(movieCharacters)).to.deep.equal([
+    //     {
+    //       name: 'Howl',
+    //       isAWizard: true,
+    //       quote: `You're wearing that hat? After all the magic I used to make your dress pretty?`,
+    //     },
+    //     {
+    //       name: 'Gandalf',
+    //       isAWizard: true,
+    //       quote: `You shall not pass!`,
+    //     },
+    //   ]);
+    // });
+
+    for (let character of onlyWizards(movieCharacters)) {
+      it('Should return if isAWizard is true', () => {
+        expect(character.isAWizard).to.equal(true);
+      });
+    }
+  });
+});

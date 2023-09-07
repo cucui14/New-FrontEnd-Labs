@@ -292,3 +292,4 @@ let list = new List();
 list.addMovie(movie1);
 list.addMovie(movie2);
 console.log(list.displayMovies());
+
