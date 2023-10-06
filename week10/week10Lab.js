@@ -27,7 +27,7 @@
 
 /*------------------------ Creating a website with only JS ------------------------*/
 console.log(`-------------------------- 
-Part 1: Create a form with only JavaScript`)
+Part 1: Create a form with only JavaScript`);
 
 /** 
  *
@@ -41,14 +41,33 @@ Part 1: Create a form with only JavaScript`)
            You should now have a label and a input on your website.
            Do the same steps, appending a label/input for Email, and a submit button to your form.
  * ↓ YOUR CODE HERE ↓ */
+let myForm = document.createElement('form');
+let myLabel = document.createElement('label');
+let myInput = document.createElement('input');
+let myLabel2 = document.createElement('label');
+let myInput2 = document.createElement('input');
+let myButton = document.createElement('button');
 
-// console.log(myForm)
+myLabel.innerHTML = 'Name';
+myForm.append(myLabel);
+myForm.append(myInput);
+
+myLabel2.innerHTML = 'Email';
+myForm.append(myLabel2);
+myForm.append(myInput2);
+
+myButton.innerHTML = 'Submit';
+myForm.append(myButton);
+
+document.body.append(myForm);
+
+console.log(myForm);
 //Question: Besides changing the innerHTML, what other HTML things can we change using JavaScript?
-//Answer:
+//Answer: We can change the attributes, values, classes and others
 
 /*------------------------ Styling a form with only JavaScript------------------------*/
 console.log(`-------------------------- 
-Part 2: Styling our form with only JavaScript`)
+Part 2: Styling our form with only JavaScript`);
 
 /**
  *  Hint: element.style.cssProperty = ''
@@ -59,13 +78,17 @@ Part 2: Styling our form with only JavaScript`)
  *  Step 3: Give your form a display of flex, a flex-direction of column, and a max-width of 250px
  *
  * ↓ YOUR CODE HERE ↓ */
-
+myForm.style.backgroundColor = '#252525';
+myForm.style.color = '#FFF';
+myForm.style.display = 'flex';
+myForm.style.flexDirection = 'column';
+myForm.style.maxWidth = '250px';
 //Question: Do you prefer styling with JavaScript or CSS?
-//Answer:
+//Answer: CSS
 
 /*------------------------ Creating a table with only JavaScript ------------------------*/
 console.log(`-------------------------- 
-Part 3: Creating a table with only JavaScript`)
+Part 3: Creating a table with only JavaScript`);
 
 /*
  * Note: Most of these steps are similar to Part 1.
@@ -79,15 +102,28 @@ Part 3: Creating a table with only JavaScript`)
 
  * Final Step: Style your table using JavaScript starting with a border. You may need to target more element/nodes than we did with myTable.
  * ↓ YOUR CODE HERE ↓ */
+let myTable = document.createElement('table');
+let tr = document.createElement('tr');
+let td = document.createElement('td');
+let td2 = document.createElement('td');
 
-// console.log(myTable)
+td.innerHTML = 'Name';
+td2.innerHTML = 'Email';
+
+tr.append(td);
+tr.append(td2);
+myTable.append(tr);
+myTable.style.border = '2px solid #000';
+document.body.append(myTable);
+
+console.log(myTable);
 //Question: While this is clearly a more round-about way of making a table, how can using JavaScript in this way
 //          more beneficial than HTML?
-//Answer:
+//Answer: Is has the benefit of been dynamic
 
 /*------------------------ Changing our body background on click ------------------------*/
 console.log(`-------------------------- 
-Part 4: Changing our background on click`)
+Part 4: Changing our background on click`);
 /**
  * Documentation: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events
  *
@@ -103,12 +139,22 @@ Part 4: Changing our background on click`)
  * Step 7: Click the button in your index.html and see the background change!
  *
  * ↓ YOUR CODE HERE ↓ */
+myButton = document.getElementById('myButton');
+
+myButton.addEventListener('click', function () {
+  r = Math.floor(Math.random() * 256);
+  g = Math.floor(Math.random() * 256);
+  b = Math.floor(Math.random() * 256);
+  document.body.style.backgroundColor = `rgb(${r},${g},${b})`;
+});
+
+console.log(myButton);
 
 //Question: What other event listeners are there?
 //             Try them out by replacing 'click' in your function above!
-//Answer:
+//Answer: Mouse events, keyboard events, from events, window and document events, touch events and custom events.
 
-console.log(`-----------Finished------------`)
+console.log(`-----------Finished------------`);
 
 /**
  * Extra Project Ideas:
