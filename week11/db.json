@@ -119,6 +119,18 @@
       "lastname": "Walsh",
       "grade": "79",
       "id": 20
+    },
+    {
+      "firstname": "Alison",
+      "lastname": "Bermudez",
+      "grade": "99",
+      "id": 21
+    },
+    {
+      "firstname": "Angel",
+      "lastname": "Bermudez",
+      "grade": "95",
+      "id": 22
     }
   ]
 }
