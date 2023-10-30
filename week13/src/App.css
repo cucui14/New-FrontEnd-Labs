@@ -1,0 +1,37 @@
+nav {
+    width: 100vw;
+    background-color: #6ea8fe;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}
+
+.nav-list {
+    list-style-type: none;
+    color: #FFF;
+    font-weight: 400;margin: 0px;
+}
+
+.nav-items {
+    padding: 1rem;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.nav-list .active {
+    font-weight: 700;
+}
+
+.nav-items:hover {
+    color: #161d60;
+}
+
+.welcome-section {
+    text-transform: uppercase;
+    text-align: center;
+    background-color: #d9d8d8;
+    padding-block: 1rem;
+}

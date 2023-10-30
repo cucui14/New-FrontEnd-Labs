@@ -57,7 +57,7 @@
 
 /*------------------------ Part 1: Setting up a JSON server ------------------------*/
 console.log(`-------------------------- 
-Part 1: Setup your JSON server`)
+Part 1: Setup your JSON server`);
 
 /**
  * Documentation: https://www.npmjs.com/package/json-server#getting-started
@@ -75,12 +75,12 @@ Part 1: Setup your JSON server`)
  * Step 3: Below, create a const declaration for your URL endpoint
  *
  * ↓ YOUR CODE HERE ↓ */
-
+const STUDENT_ROSTER_URL = 'http://localhost:3000/studentRoster';
 /*------------------------ Part 2: HTTP Verb: GET ------------------------*/
 console.log(
   `-------------------------- 
 Part 2: GET and displaying the information`
-)
+);
 
 /**
  * Step 1: Use $.get(api_url_here).then(data => console.log(data)) to check if
@@ -91,12 +91,31 @@ Part 2: GET and displaying the information`
  *         Reminder: While you are not required to, the lab solution uses a <table>
  *
  * ↓ YOUR CODE HERE ↓ */
-
+$.get(STUDENT_ROSTER_URL, (data) => {
+  data.map((student) => {
+    $('tbody').append(`
+    <tr>
+      <td>
+      ${student.id}
+      </td>
+      <td>
+      ${student.fullName}
+      </td>
+      <td>
+      ${student.researchAssignment}
+      </td>
+      <td>
+      <button onClick="deleteUser(${student.id})">🗑</button>
+      </td>
+    </tr>
+    `);
+  });
+});
 /*------------------------ Part 3: HTTP Verb: POST ------------------------*/
 console.log(
   `-------------------------- 
 Part 3: POST and adding new students`
-)
+);
 
 /**
  * Step 1: Create a form in our HTML to post including
@@ -116,12 +135,18 @@ Part 3: POST and adding new students`
  *         Your button should now post a new user on click.
  *
  * ↓ YOUR CODE HERE ↓ */
-
+$('#submit').on('click', (e) => {
+  e.preventDefault();
+  $.post(STUDENT_ROSTER_URL, {
+    fullName: $('#studentName').val(),
+    researchAssignment: $('#researchAssignment').val(),
+  });
+});
 /*------------------------ Part 4: HTTP Verb: DELETE ------------------------*/
 console.log(
   `-------------------------- 
 Part 4: DELETE and deleting individual students`
-)
+);
 
 /**
  * Docs:   https://api.jquery.com/jquery.ajax/
@@ -149,12 +174,17 @@ Part 4: DELETE and deleting individual students`
  *         Your elements should now be getting deleted!
  *
  * ↓ YOUR CODE HERE ↓ */
+function deleteUser(id) {
+  $.ajax(`${STUDENT_ROSTER_URL}/${id}`, {
+    type: 'DELETE',
+  });
+}
 
 /*------------------------ HTTP Verb: UPDATE ------------------------*/
 console.log(
   `-------------------------- 
 Part 4: PUT and updating the information`
-)
+);
 
 /**
  * Step 1: Create a function called updateUser(){}
@@ -173,8 +203,25 @@ Part 4: PUT and updating the information`
  *         do the updateUser function on click.
  *
  * ↓ YOUR CODE HERE ↓ */
+const updateUser = (id, newStudentName, newResearchAssignment) => {
+  $.ajax(`${STUDENT_ROSTER_URL}/${id}`, {
+    method: 'PUT',
+    data: {
+      fullName: newStudentName,
+      researchAssignment: newResearchAssignment,
+    },
+  });
+};
 
-console.log(`-----------Finished------------`)
+$('#update').on('click', (e) => {
+  e.preventDefault();
+  let id = $('#studentId').val();
+  let newStudentName = $('#newStudentName').val();
+  let newResearchAssignment = $('#newResearchAssignment').val();
+  updateUser(id, newStudentName, newResearchAssignment);
+});
+
+console.log(`-----------Finished------------`);
 
 /*------------------------ Optional: Style it with bootstrap! ------------------------*/
 

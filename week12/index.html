@@ -13,8 +13,42 @@
       crossorigin="anonymous"
     />
   </head>
-  <body>
+  <body class="container">
     <!-- Your HTML Code below here -->
+    <form>
+      <label for="studentName">Student Name</label><br />
+      <input type="text" name="studentName" id="studentName" /><br />
+      <label for="researchAssignment">Research Assignment</label><br />
+      <input
+        type="text"
+        name="researchAssignment"
+        id="researchAssignment"
+      /><br />
+      <button type="submit" id="submit">submit</button>
+    </form>
+    <br />
+    <form>
+      <label for="studentId">Student ID</label><br />
+      <input type="text" name="studentId" id="studentId" /><br />
+      <label for="newStudentName">New Student Name</label><br />
+      <input type="text" name="newStudentName" id="newStudentName" /><br />
+      <label for="newResearchAssignment">New Research Assignment</label><br />
+      <input
+        type="text"
+        name="newResearchAssignment"
+        id="newResearchAssignment"
+      /><br />
+      <button type="Submit" id="update">Update</button>
+    </form>
+    <br />
+    <table>
+      <thead>
+        <th>ID#</th>
+        <th>Student Name</th>
+        <th>Student Assignment</th>
+      </thead>
+      <tbody></tbody>
+    </table>
 
     <!-- ALL OF YOUR JQUERY/BOOTSTRAP/SCRIPT SETUP ARE BELOW HERE. 
   WE USE CDN'S (content delivery network) INSTEAD OF NODE_MODULES -->

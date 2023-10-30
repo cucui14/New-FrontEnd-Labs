@@ -71,10 +71,17 @@
  */
 
 /* -- ALL YOUR COMPONENT/STYLE IMPORTS HERE -- */
-import './App.css'
+import './App.css';
+import Nav from './Nav';
+import Welcome from './Welcome';
 
 function App() {
-  return <div className="App"></div>
+  return (
+    <div className="App">
+      <Nav />
+      <Welcome />
+    </div>
+  );
 }
 
-export default App
+export default App;
