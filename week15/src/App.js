@@ -181,21 +181,131 @@
  */
 
 /*-- ALL IMPORTS HERE -- */
-import './App.css'
+import './App.css';
+import React, { useState, useEffect } from 'react';
+
+const API_URL = 'https://65396bb3e3b530c8d9e864b9.mockapi.io/api/v1/user/';
 
 function App() {
   /* -- YOUR CODE/CRUD OPERATIONS HERE --*/
+  const [users, setUsers] = useState([]);
+
+  const [newUserName, setNewUserName] = useState('');
+  const [newUserJobTitle, setNewUserJobTitle] = useState('');
+  const [newUserCompanyName, setNewUserCompanyName] = useState('');
+
+  //updatedName, updatedJobTitle, updatedCompanyName
+  const [updatedUserName, setUpdatedUserName] = useState('');
+  const [updatedUserJobTitle, setUpdatedUserJobTitle] = useState('');
+  const [updatedUserCompanyName, setUpdatedUserCompanyName] = useState('');
+
+  //GET ALL USERS
+  const getUsers = () => {
+    fetch(API_URL)
+      .then((response) => response.json())
+      .then((data) => setUsers(data));
+  };
+
+  useEffect(() => {
+    getUsers();
+  }, []);
+
+  //DELETE USER
+  const deleteUser = (id) => {
+    fetch(`${API_URL}${id}`, {
+      method: 'DELETE',
+    }).then(() => getUsers());
+  };
+
+  //UPDATE USER
+  const updateUser = (e, userObject) => {
+    e.preventDefault();
+
+    let updatedUserObject = {
+      ...userObject,
+      name: updatedUserName,
+      jobTitle: updatedUserJobTitle,
+      companyName: updatedUserCompanyName,
+    };
+
+    fetch(`${API_URL}${userObject.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedUserObject),
+    }).then(() => getUsers());
+  };
+
+  //POST NEW USER
+  const postNewUser = (e) => {
+    e.preventDefault();
+
+    fetch(API_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: newUserName,
+        jobTitle: newUserJobTitle,
+        companyName: newUserCompanyName,
+      }),
+    }).then(() => getUsers());
+  };
+
+  console.log(users);
 
   return (
-    <div className="App">
+    <div className="App container">
       {/* CODE BELOW: PART: 5.3 Connecting our POST */}
+      <form className="mb-15">
+        <h3>Post new user form</h3>
+        <label>Name</label>
+        <input onChange={(e) => setNewUserName(e.target.value)} />
+        <br></br>
+        <label>Job Title</label>
+        <input onChange={(e) => setNewUserJobTitle(e.target.value)} />
+        <br></br>
+        <label>Company Name</label>
+        <input onChange={(e) => setNewUserCompanyName(e.target.value)} />
+        <br></br>
+        <button onClick={(e) => postNewUser(e)}>Submit</button>
+      </form>
 
       {/* CODE BELOW: PART 5.1: Connecting our GET  //  PART 5.4: Connecting our UPDATE */}
+      {users.map((user) => (
+        <div key={user.id} className="user-container items-end">
+          <div>
+            <p>Name: {user.name}</p>
+            <p>Job Title: {user.jobTitle}</p>
+            <p>Company Name: {user.companyName}</p>
+          </div>
+          <div className="px-30">
+            <button onClick={() => deleteUser(user.id)}>Delete User</button>
+          </div>
+          <form action="">
+            <h3>Update This User</h3>
+            <label>Update Name</label>
+            <input onChange={(e) => setUpdatedUserName(e.target.value)} />
+            <br></br>
+            <label>Update Job Title</label>
+            <input onChange={(e) => setUpdatedUserJobTitle(e.target.value)} />
+            <br></br>
+            <label>Update Company Name</label>
+            <input
+              onChange={(e) => setUpdatedUserCompanyName(e.target.value)}
+            />
+            <br></br>
+            <button onClick={(e) => updateUser(e, user)}>Update User</button>
+          </form>
+        </div>
+      ))}
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
 
 /**
  *     While this lab focused mostly on functionality over practicality,
