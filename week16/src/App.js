@@ -5,11 +5,12 @@
    FE Lab Week 16
 */
 
-import React from 'react'
-import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom'
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
-import Home from './Components/Home.js'
-import About from './Components/About.js'
+import Home from './Components/Home.js';
+import About from './Components/About.js';
+import ContactUs from './Components/ContactUs.js';
 
 /** Instruction:
  *    This is a boiler plate, or a "starting point" for React Router.
@@ -54,6 +55,9 @@ export default function App() {
             <li>
               <Link to="/about">About</Link>
             </li>
+            <li>
+              <Link to="/contactus">Contact Us</Link>
+            </li>
           </ul>
         </nav>
 
@@ -71,11 +75,15 @@ export default function App() {
             <About />
           </Route>
 
-          <Route path="/">
+          <Route exact path="/">
             <Home />
+          </Route>
+
+          <Route path="/contactus">
+            <ContactUs />
           </Route>
         </Switch>
       </div>
     </Router>
-  )
+  );
 }
